@@ -6,7 +6,8 @@
   "scripts": {
     "sls": "serverless",
     "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
-    "format": "npx prettier --write ."
+    "format": "npx prettier --write .",
+    "prepare": "husky install"
   },
   "engines": {
     "node": ">=14.15.0"
@@ -29,7 +30,8 @@
     "tsconfig-paths-webpack-plugin": "^3.3.0",
     "typescript": "^4.3.5",
     "webpack": "^5.20.2",
-    "webpack-node-externals": "^2.5.2"
+    "webpack-node-externals": "^2.5.2",
+    "husky": "^7.0.0"
   },
   "author": "Christopher S. Gradwohl",
   "license": "MIT"
