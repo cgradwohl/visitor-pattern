@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sls": "serverless --aws-profile personal",
-    "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
     "format": "npx prettier --write .",
-    "prepare": "husky install"
+    "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
+    "prepare": "husky install",
+    "sls": "serverless --aws-profile personal",
+    "typecheck": "tsc --noEmit"
   },
   "engines": {
     "node": ">=14.15.0"
