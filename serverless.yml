@@ -6,12 +6,19 @@ provider:
   runtime: nodejs12.x
   lambdaHashingVersion: 20201221
 
+package:
+  individually: true
+
 plugins:
   - serverless-webpack
 
 functions:
   worker:
     handler: worker.default
+    events:
+      - http:
+          path: /
+          method: get
 
 custom:
   webpack:
