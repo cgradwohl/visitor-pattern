@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sls": "serverless",
-    "deploy": "serverless deploy --aws-profile personal",
+    "sls": "serverless --aws-profile personal",
     "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
     "format": "npx prettier --write .",
     "prepare": "husky install"
