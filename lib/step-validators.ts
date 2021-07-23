@@ -17,10 +17,10 @@ const delaySchema = {
   additionalProperties: true,
   type: "object",
   properties: {
-    action: { enum: ["cancel"] },
-    token: { type: "string", minLength: 1 },
+    action: { enum: ["delay"] },
+    duration: { type: "string", minLength: 1 },
   },
-  required: ["action", "token"],
+  required: ["action", "duration"],
 };
 
 export const validCancelSchema = ajv.compile<CancelSchema>(cancelSchema);
