@@ -1,5 +1,5 @@
 export interface Schema {
-  [x: string]: any;
+  [key: string]: any;
 }
 
 export interface CancelSchema extends Schema {
