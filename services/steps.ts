@@ -1,4 +1,5 @@
-import { Command, StepCommand } from "../types/commands";
+import { StepCommand } from "../types/commands";
+import { RunContext } from "../types/context";
 import {
   CancelStep,
   DelayStep,
@@ -10,8 +11,6 @@ import {
   UpdateProfileStep,
 } from "../types/steps";
 
-const command = new StepCommand();
-
 const steps = [
   new CancelStep({ action: "cancel", token: "test" }),
   new DelayStep({ action: "delay", duration: "test" }),
@@ -22,10 +21,18 @@ const steps = [
   new UpdateProfileStep(),
 ];
 
-export const StepService = (steps: Step[], command: Command) => {
+const command = new StepCommand();
+
+const context: RunContext = {};
+
+export const InvokeRun = (
+  steps: Step[],
+  command: StepCommand,
+  runContext: RunContext
+) => {
   for (const step of steps) {
-    step.execute(command);
+    step.execute(command, runContext);
   }
 };
 
-StepService(steps, command);
+InvokeRun(steps, command, context);

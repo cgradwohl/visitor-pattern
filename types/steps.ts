@@ -1,5 +1,6 @@
 import { validCancelSchema, validDelaySchema } from "../lib/step-validators";
 import { StepCommand } from "./commands";
+import { RunContext } from "./context";
 import { CancelSchema, DelaySchema } from "./schemas";
 
 export type Action =
@@ -12,19 +13,19 @@ export type Action =
   | "update-profile";
 
 /**
- * The Component interface declares an `accept` method that should take the base
- * visitor interface as an argument.
+ * Component Interface
+ *  - declares an `accept` method that should take the base visitor interface as an argument.
  */
 export interface Step {
   action: Action;
-  execute(command: StepCommand): void;
+  execute(command: StepCommand, context: RunContext): void;
 }
 
 export class CancelStep implements Step {
   action: "cancel";
   token: string;
 
-  execute(command: StepCommand) {
+  execute(command: StepCommand, context: RunContext) {
     command.cancel(this);
   }
 
@@ -40,6 +41,7 @@ export class CancelStep implements Step {
 
 export class DelayStep implements Step {
   action: "delay";
+  duration: string;
 
   constructor(schema: DelaySchema) {
     if (!validDelaySchema(schema)) {
@@ -47,9 +49,10 @@ export class DelayStep implements Step {
     }
 
     this.action = schema.action;
+    this.duration = schema.duration;
   }
 
-  execute(command: StepCommand) {
+  execute(command: StepCommand, context: RunContext) {
     command.delay(this);
   }
 }
